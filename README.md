@@ -110,27 +110,27 @@ To run a Laravel project on your local network and make it accessible from anoth
 1. Set Up the Laravel Project
 On Windows:
 Install Laravel via Composer if not already done.
-
-bash
-Copy code
+```bash
 composer create-project --prefer-dist laravel/laravel project-name
+```
+
 Start the Laravel development server:
 Navigate to your project directory in the terminal (e.g., C:\xampp\htdocs\project-name) and run:
-
-bash
-Copy code
+```bash
 php artisan serve --host=0.0.0.0 --port=8000
+```
+
 On Linux (Ubuntu):
 Navigate to your Laravel project directory:
-
-bash
-Copy code
+```bash
 cd /path/to/your/laravel-project
-Start the Laravel development server with network access:
+```
 
-bash
-Copy code
+Start the Laravel development server with network access:
+```bash
 php artisan serve --host=0.0.0.0 --port=8000
+```
+
 2. Find Your PC's Local IP Address
 Your phone will connect to the Laravel project using your PC's local IP address.
 
@@ -140,26 +140,29 @@ Press Win + R, type cmd, and press Enter.
 
 Find your IP address:
 Run:
-
-bash
-Copy code
+```bash
 ipconfig
+```
 Look for the IPv4 Address under your active network connection.
 
 On Linux (Ubuntu):
 Open a terminal and run:
-bash
-Copy code
+```bash
 ip addr
+```
+
 Look for the inet address associated with your active network interface (e.g., 192.168.x.x).
+
 3. Access the Laravel Project from Your Phone
 Make sure your phone is connected to the same Wi-Fi network as your PC.
 
 On your phone, open a browser and type the URL:
-bash
-Copy code
+```bash
 http://<your-pc-ip>:8000
+```
+
 Replace <your-pc-ip> with your PC's local IP address (e.g., 192.168.1.100).
+
 4. Configure the Firewall (If Necessary)
 On Windows:
 Allow PHP through the firewall:
@@ -167,22 +170,21 @@ Go to Control Panel > Windows Defender Firewall > Allow an app or feature throug
 Find PHP or add it manually, ensuring both Private and Public are checked.
 On Linux (Ubuntu):
 If you're using ufw (Uncomplicated Firewall), allow traffic on port 8000:
-bash
-Copy code
+```bash
 sudo ufw allow 8000
 sudo ufw reload
+```
+
 5. Verify Laravel Configuration
 Ensure Laravel is properly configured to serve requests from your local network:
 
 Open the AppServiceProvider.php file:
-
-bash
-Copy code
+```bash
 nano app/Providers/AppServiceProvider.php
-Add the following in the boot() method:
+```
 
-php
-Copy code
+Add the following in the boot() method:
+```bash
 use Illuminate\Support\Facades\URL;
 
 public function boot()
@@ -191,24 +193,27 @@ public function boot()
         URL::forceRootUrl(config('app.url'));
     }
 }
+```
+
 Set the APP_URL in the .env file to use your local IP:
-
-env
-Copy code
+```bash
 APP_URL=http://<your-pc-ip>:8000
-Clear the cache:
+```
 
-bash
-Copy code
+Clear the cache:
+```bash
 php artisan config:clear
 php artisan cache:clear
 php artisan route:clear
+```
+
 6. Troubleshooting Common Issues
 Issue: "Requested URL was not found on this server."
 Check the URL in the browser on your phone and ensure the IP and port match exactly.
 Issue: Phone Cannot Connect to the Laravel Server
 Ensure your phone and PC are on the same Wi-Fi network.
 Check your firewall settings to allow port 8000.
+
 Check Laravel Logs:
 If the page doesn’t load, check the logs for errors:
 ```bash
@@ -223,7 +228,7 @@ php artisan serve
 
 
 
-NOTE:
+### NOTE:
 If your Laravel website takes a long time to load on the phone via the local network, there could be several reasons for the slowness. Below are steps to optimize the setup and troubleshoot issues:
 
 If your Laravel website takes a long time to load on the phone via the local network, there could be several reasons for the slowness. Below are steps to optimize the setup and troubleshoot issues:
@@ -435,6 +440,7 @@ or if you set up a custom domain:
 ```bash
 http://your-local-domain.test
 ```
+
 
 
 
