@@ -60,6 +60,10 @@ http://<your-pc-ip>:8000
 ```
 Replace <your-pc-ip> with your PC's local IP address.
 
+### This is the end of the major steps, until here everything should work!, if it doesn't then you can read the other steps and notes below...!, Have a goodluck !.
+................................................................................
+
+
 4. Configure the Firewall (If Necessary)
 On Windows:
 Allow PHP through the firewall:
