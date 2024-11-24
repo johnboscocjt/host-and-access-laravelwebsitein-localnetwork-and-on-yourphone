@@ -614,6 +614,86 @@ If you're using HTTPS, ensure that your SSL certificate is correctly configured.
 By investigating these areas, you should be able to identify the cause of the slow loading routes on your phone. If the problem persists, consider providing specific details about the routes that are slow, any error messages you encounter, and the network conditions under which you're testing. This information can help in diagnosing the issue more effectively.
 
 
+
+### NOTE3:
+# How to setupcustom domain in local network
+Example:
+To access http://0.0.0.0:8000 as http://wsccharityconsortium.test/, you will need to perform a few steps to set up your local environment. Here's how you can do it:
+
+1. Update Your Hosts File
+You need to map the domain wsccharityconsortium.test to 127.0.0.1 (or 0.0.0.0, which is equivalent) in your hosts file.
+
+Linux/Mac: Open a terminal and run:
+```bash
+sudo nano /etc/hosts
+```
+
+Windows: Open Notepad as an administrator and edit the file located at:
+```bash
+C:\Windows\System32\drivers\etc\hosts
+```
+
+Add the following line to the end of the file:
+```bash
+127.0.0.1 wsccharityconsortium.test
+```
+
+2. Configure Your Web Server
+If you are using Apache, you need to create a virtual host configuration for wsccharityconsortium.test.
+
+Create a new configuration file:
+```bash
+sudo nano /etc/apache2/sites-available/wsccharityconsortium.conf
+```
+
+Add the following configuration:
+```bash
+<VirtualHost *:80>
+    ServerName wsccharityconsortium.test
+    DocumentRoot /home/jbtechnix/Downloads/programmingandcoding/website/jbwebws>
+
+    <Directory /home/jbtechnix/Downloads/programmingandcoding/website/jbwebwsc/>
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/jbwebwsc_error.log
+    CustomLog ${APACHE_LOG_DIR}/jbwebwsc_access.log combined
+
+    ProxyPass / http://0.0.0.0:8000/
+    ProxyPassReverse / http://0.0.0.0:8000/
+</VirtualHost>
+```
+
+Enable the necessary modules: Make sure you have the proxy and proxy_http modules enabled:
+```bash
+sudo a2enmod proxy
+sudo a2enmod proxy_http
+```
+
+Enable your new site configuration:
+```bash
+sudo a2ensite wsccharityconsortium.conf
+```
+
+Restart Apache:
+```bash
+sudo systemctl restart apache2
+```
+
+3. Access the Site
+Now, you should be able to access your application by navigating to http://wsccharityconsortium.test/ in your web browser.
+
+Notes:
+Make sure that whatever service is running on 0.0.0.0:8000 is up and running.
+If you are using a firewall, ensure that it allows traffic on port 80 (HTTP).
+If you want to use HTTPS, you will need to set up SSL certificates and adjust the configuration accordingly.
+
+
+
+
+
+
 ### proudly made by johnboscocjt
 
 
