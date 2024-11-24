@@ -694,6 +694,49 @@ If you want to use HTTPS, you will need to set up SSL certificates and adjust th
 
 
 
+
+### Accessing the custom domain from local network
+To access the custom domain http://wsccharityconsortium.test/ on your phone, follow these steps:
+
+1. Ensure Your Phone is on the Same Network
+Make sure your phone is connected to the same local network (Wi-Fi) as the machine where your web server is running. This is essential because the custom domain is likely pointing to a local IP address (like 127.0.0.1 or 0.0.0.0), which is not accessible from outside that network.
+
+2. Modify the Hosts File on Your Phone (if necessary)
+If you want to use the custom domain on your mobile device without a DNS server, you will need to modify the hosts file. However, this is typically not straightforward on most mobile devices without rooting (Android) or jailbreaking (iOS). Instead, you can use one of the following methods:
+
+For Android (Without Rooting)
+Use a DNS App: Some apps can change DNS settings or allow you to set custom domains. Look for apps like "DNS Changer" or "DNS Override".
+
+Browser Access: If your web server is accessible via the local IP address, you can directly enter the IP address in the browser on your phone.
+
+For iOS
+Using a DNS App: Similar to Android, you can use an app that allows you to change DNS settings or create local DNS entries.
+
+Browser Access: Again, you can directly enter the local IP address of your server in Safari or another browser.
+
+3. Accessing the Custom Domain
+If you have set everything up correctly and your phone is on the same network as your server, you should be able to access the custom domain by:
+
+Opening a Web Browser: Open a web browser on your phone (e.g., Chrome, Safari).
+Entering the Custom Domain: Type http://wsccharityconsortium.test/ in the address bar and hit enter.
+
+4. Use a Local DNS Server (Optional)
+If you find modifying the hosts file cumbersome, you could set up a local DNS server on your network (like Pi-hole or dnsmasq) that can resolve wsccharityconsortium.test to the local IP address of your server. This way, any device connected to your network can resolve the custom domain without manual configuration.
+
+5. Accessing from Outside Your Local Network
+If you want to access http://wsccharityconsortium.test/ from outside your local network (e.g., using mobile data), you will need to:
+
+Set Up Port Forwarding: Configure your router to forward requests on port 80 (HTTP) to the internal IP address of your web server.
+
+Use a Public IP or Dynamic DNS: If your public IP address changes, consider using a dynamic DNS service to map a domain name to your changing IP.
+
+
+To summarize, if you want to access http://wsccharityconsortium.test/ on your phone, ensure you are on the same network as your server, and either modify your hosts file or directly access it via the server's IP address. For external access, consider port forwarding and using a public IP or dynamic DNS.
+
+
+
+
+
 ### proudly made by johnboscocjt
 
 
